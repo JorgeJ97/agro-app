@@ -1,8 +1,4 @@
-# 🌱 CropCo Backend
-
-## 📝 Descripción general
-
-CropCo Backend es una aplicación desarrollada en NestJS para la gestión integral de actividades agrícolas. Permite administrar cultivos, empleados, ventas, compras, cosechas, trabajos, insumos y generar reportes para la toma de decisiones en empresas agrícolas.
+Aplicación desarrollada en NestJS para la gestión integral de actividades agrícolas. Permite administrar cultivos, empleados, ventas, compras, cosechas, trabajos, insumos y generar reportes para la toma de decisiones en empresas agrícolas.
 
 ## 🚀 Características principales
 
@@ -131,10 +127,4 @@ Con el servidor en ejecución, puedes poblar la base de datos accediendo a:
 
 [http://localhost:3000/seed](http://localhost:3000/seed)
 
-## 👥 Autores
 
-- **Yinner Chilito** - _Desarrollo inicial_
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT.
