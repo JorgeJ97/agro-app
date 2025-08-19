@@ -1,0 +1,34 @@
+services:
+  server-db:
+    image: postgres:15
+    container_name: server-db
+    environment:
+      POSTGRES_DB: cropco
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d cropco']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./data-server-db-development:/var/lib/postgresql/data
+      - ./sql-scripts:/docker-entrypoint-initdb.d/
+  nest-api:
+    image: stivenc30/public-cropco-api-rest:latest
+    container_name: nest-api-local
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=server-db
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=root
+      - DB_NAME=cropco
+      - JWT_SECRET=millavesecreta
+      - PORT_BACKEND=3000
+      - HOST_FRONTED=http://localhost:5173
+    depends_on:
+      - server-db
