@@ -42,7 +42,7 @@ export class EmployeesService {
       employeeStartDate: new Date(),
       employeeHours: 48,
       employeeWorkSchedule: 'Lunes a Viernes',
-      employerCompany: 'Cropco Corp.',
+      employerCompany: 'Agro Corp.',
     });
     const doc = this.printerService.createPdf({ docDefinition });
     return doc;

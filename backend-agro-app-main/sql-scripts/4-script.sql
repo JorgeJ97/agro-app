@@ -15,5 +15,5 @@ BEGIN
 END;
 $$;
 
-alter function convert_to_grams(text, numeric) owner to "admin-cropco";
+alter function convert_to_grams(text, numeric) owner to "admin-agro";
 

@@ -1,39 +1,37 @@
-# Stage 1: Install all dependencies using npm
-FROM node:18-alpine AS all-deps
+# Stage 1: Install all dependencies
+FROM node:18.20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Stage 2: Install production dependencies using npm
-FROM node:18-alpine AS prod-deps
+# Stage 2: Run tests
+FROM node:18.20-alpine AS tester
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
-# Stage 3: Run tests
-FROM node:18-alpine AS tester
-WORKDIR /app
-COPY --from=all-deps /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# COPY ./.env.test.build ./.env.test
 RUN npm run test:unit
-# RUN npm run test:e2e
 
-# Stage 4: Build the application
-FROM node:18-alpine AS builder
+# Stage 3: Build app
+FROM node:18.20-alpine AS builder
 WORKDIR /app
-COPY --from=all-deps /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-COPY certs ./certs
-COPY public ./public
 RUN npm run build
 
-# Stage 5: Prepare the runtime environment
-FROM node:18-alpine AS runner
+# Stage 4: Prune dev dependencies
+FROM node:18.20-alpine AS prod-deps
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json package-lock.json ./
+RUN npm prune --omit=dev
+
+# Stage 5: Runtime 
+FROM node:18.20-alpine AS runner
 WORKDIR /app
 COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=builder /app/certs ./certs
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/certs ./certs
+USER node
 EXPOSE 3000
 CMD [ "node", "dist/main" ]

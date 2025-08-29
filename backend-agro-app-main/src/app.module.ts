@@ -30,6 +30,8 @@ import * as path from 'path';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        console.log('DB_USERNAME',configService.get('DB_USERNAME'));
+        console.log('DB_PASSWORD',configService.get('DB_PASSWORD'));
         const statusProject =
           configService.get<string>('STATUS_PROJECT') || 'development';
         const caCertPath = configService.get<string>('DB_CA_CERT_PATH');
@@ -43,18 +45,17 @@ import * as path from 'path';
             .toString();
         }
 
-        return {
-          type: 'postgres',
-          host: configService.get<string>('DB_HOST'),
-          port: configService.get<number>('DB_PORT'),
-          username: configService.get<string>('DB_USERNAME'),
-          password: configService.get<string>('DB_PASSWORD'),
-          database: configService.get<string>('DB_NAME'),
-          entities: [__dirname + '/**/*.entity{.ts,.js}'],
-          synchronize: statusProject === 'development',
-          ssl: false,
-          // ssl: false,
-        };
+  return {
+  type: 'postgres',
+  host: configService.get<string>('DB_HOST'),
+  port: parseInt(configService.get<string>('DB_PORT'), 10), 
+  username: configService.get<string>('DB_USERNAME'),
+  password: String(configService.get<string>('DB_PASSWORD')), 
+  database: configService.get<string>('DB_NAME'),
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  synchronize: statusProject === 'development',
+  ssl: false,
+};
       },
     }),
     AuthModule,

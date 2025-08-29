@@ -144,11 +144,11 @@ export interface SaleDetails {
 export const initialData: Seed = {
   users: [
     {
-      first_name: 'Yinner',
-      last_name: 'Chilito',
-      email: 'yinnerchilito@example.com',
+      first_name: 'Juan',
+      last_name: 'Jimenez',
+      email: 'juan@example.com',
       password: '123456',
-      cell_phone_number: '3001234567',
+      cell_phone_number: '3007234567',
       is_active: true,
     },
 

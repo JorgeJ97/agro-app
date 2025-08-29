@@ -19,6 +19,8 @@ export class UserPermitsGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest();
 
+    console.log("Llega a user-permit.guards")
+
     // Obtener usuario
     const userRequest = req.user as User as any;
 

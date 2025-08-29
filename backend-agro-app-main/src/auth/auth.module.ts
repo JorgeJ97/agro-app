@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt-strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Role } from './entities/role.entity';
-import { Module as ModuleCropco } from './entities/module.entity';
+import { Module as ModuleAgro } from './entities/module.entity';
 import { ModuleActions } from './entities/module-actions.entity';
 import { User } from 'src/users/entities/user.entity';
 import { UserActions } from 'src/users/entities/user-actions.entity';
@@ -35,7 +35,7 @@ import { CommonModule } from 'src/common/common.module';
     }),
     TypeOrmModule.forFeature([
       Role,
-      ModuleCropco,
+      ModuleAgro,
       ModuleActions,
       User,
       UserActions,

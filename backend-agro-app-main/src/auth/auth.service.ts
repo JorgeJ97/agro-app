@@ -215,7 +215,7 @@ export class AuthService {
       },
     };
 
-    await this.modulesRepository.delete({});
+    // await this.modulesRepository.delete({});
 
     for (const nameModule of Object.keys(modules)) {
       const modelEntity = this.modulesRepository.create({

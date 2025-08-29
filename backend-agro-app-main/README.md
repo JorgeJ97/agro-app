@@ -82,13 +82,13 @@ El proyecto incluye un `Dockerfile` multi-etapa para construir y ejecutar la apl
 1. **Construir la imagen:**
 
    ```bash
-   docker build -t cropco-api-rest .
+   docker build -t agro-api-rest .
    ```
 
 2. **Ejecutar el contenedor:**
 
    ```bash
-   docker run -p 3000:3000 --env-file .env cropco-api-rest
+   docker run -p 3000:3000 --env-file .env agro-api-rest
    ```
 
 ### Etapas del Dockerfile

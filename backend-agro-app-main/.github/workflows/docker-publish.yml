@@ -39,6 +39,6 @@ jobs:
           context: .
           push: true
           no-cache: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cropco-api-rest:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/agro-api-rest:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

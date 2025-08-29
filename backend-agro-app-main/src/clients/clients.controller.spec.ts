@@ -55,7 +55,7 @@ describe('ClientsController', () => {
     it('should create a client', async () => {
       const createClientDto: CreateClientDto = {
         first_name: 'Test',
-        last_name: 'Chilito',
+        last_name: 'Juanito',
         email: 'Pepe70866@google.com',
         cell_phone_number: '1234567890',
         address: 'Dirección random',

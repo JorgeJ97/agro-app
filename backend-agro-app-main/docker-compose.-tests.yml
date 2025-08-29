@@ -3,13 +3,13 @@ services:
     image: postgres:15
     container_name: server-db
     environment:
-      POSTGRES_DB: cropco
+      POSTGRES_DB: agro
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
     ports:
       - '5432:5432'
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres -d cropco']
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d agro']
       interval: 5s
       timeout: 5s
       retries: 5
@@ -18,7 +18,7 @@ services:
       - ./sql-scripts:/docker-entrypoint-initdb.d/
 
   nest-api-tests:
-    image: backend-cropco-tests
+    image: backend-agro-tests
     container_name: nest-api-tests
     build:
       context: .
@@ -32,8 +32,8 @@ services:
       - DB_HOST=server-db
       - DB_PORT=5432
       - DB_USERNAME=postgres
-      - DB_PASSWORD=root
-      - DB_NAME=cropco
+      - DB_PASSWORD=12345
+      - DB_NAME=agro
       - JWT_SECRET=millavesecreta
       - PORT_BACKEND=3000
       - HOST_FRONTED=http://localhost:5173
