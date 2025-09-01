@@ -1,7 +1,7 @@
 # Stage 1: Install all dependencies
 FROM node:18.20-alpine AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json sql-scripts ./
 RUN npm ci
 
 # Stage 2: Run tests
