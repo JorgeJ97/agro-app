@@ -31,6 +31,7 @@ WORKDIR /app
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
+COPY --from=deps /app/sql-scripts ./sql-scripts
 USER node
 EXPOSE 3000
 CMD [ "node", "dist/main" ]
