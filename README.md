@@ -127,3 +127,4 @@ Con el servidor en ejecución, puedes poblar la base de datos accediendo a:
 
 [http://localhost:3000/seed](http://localhost:3000/seed)
 
+
