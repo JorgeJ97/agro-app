@@ -1,7 +1,7 @@
 # Stage 1: Install all dependencies
 FROM node:18.20-alpine AS deps
 WORKDIR /app
-COPY package.json package-lock.json sql-scripts ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
 # Stage 2: Run tests
@@ -17,7 +17,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
-
 # Stage 4: Prune dev dependencies
 FROM node:18.20-alpine AS prod-deps
 WORKDIR /app
@@ -31,7 +30,7 @@ WORKDIR /app
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
-COPY --from=deps /app/sql-scripts ./sql-scripts
+COPY --from=builder /app/sql-scripts ./sql-scripts
 USER node
 EXPOSE 3000
 CMD [ "node", "dist/main" ]
