@@ -3,9 +3,9 @@ services:
     image: postgres:15
     container_name: server-db
     environment:
-      POSTGRES_DB: agro
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: ${DB_NAME:-agro}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-12345}
     ports:
       - '5432:5432'
     healthcheck:
@@ -20,15 +20,16 @@ services:
     image: backend-agro
     container_name: nest-api-local
     ports:
-      - 3000:3000
+      - '${PORT_BACKEND:-3000}:3000'
     environment:
-      - DB_HOST=server-db
-      - DB_PORT=5432
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=12345
-      - DB_NAME=agro
-      - JWT_SECRET=millavesecreta
-      - PORT_BACKEND=3000
-      - HOST_FRONTED=http://localhost:5173
+      - DB_HOST=${DB_HOST:-server-db}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - PORT_BACKEND=${PORT_BACKEND}
+      - HOST_FRONTEND=${HOST_FRONTEND}
     depends_on:
-      - server-db
+      server-db:
+        condition: service_healthy

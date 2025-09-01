@@ -18,6 +18,7 @@ import { PrinterModule } from './printer/printer.module';
 import { ConsumptionsModule } from './consumptions/consumptions.module';
 import { ShoppingModule } from './shopping/shopping.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ScriptsModule } from './scripts/scripts.module';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -30,8 +31,6 @@ import * as path from 'path';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        console.log('DB_USERNAME',configService.get('DB_USERNAME'));
-        console.log('DB_PASSWORD',configService.get('DB_PASSWORD'));
         const statusProject =
           configService.get<string>('STATUS_PROJECT') || 'development';
         const caCertPath = configService.get<string>('DB_CA_CERT_PATH');
@@ -58,6 +57,7 @@ import * as path from 'path';
 };
       },
     }),
+    ScriptsModule,
     AuthModule,
     ClientsModule,
     CommonModule,

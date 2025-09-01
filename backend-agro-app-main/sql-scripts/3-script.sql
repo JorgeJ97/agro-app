@@ -1,4 +1,33 @@
-INSERT INTO public.users (first_name, last_name, email, cell_phone_number, id, password, roles, is_active, "createdDate", "updatedDate", "deletedDate") VALUES ('demo name', 'demo lastname', 'demouser@example.com', '3001234567', 'bfbbed70-309f-442c-8112-b66a35d7a39a', '$2b$10$7IEZwdCcck2lRliuu2cQle2YAjqMSYZokSizaM4pfzlZULvtqYPGG', '{user}', true, '2025-04-05 15:39:29.626000', '2025-04-05 15:39:29.626000', null);
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM public.users WHERE email = 'demouser@example.com') THEN
+        INSERT INTO public.users (
+            first_name, 
+            last_name, 
+            email, 
+            cell_phone_number, 
+            id, 
+            password, 
+            roles, 
+            is_active, 
+            "createdDate", 
+            "updatedDate", 
+            "deletedDate"
+        ) VALUES (
+            'demo name', 
+            'demo lastname', 
+            'demouser@example.com', 
+            '3001234567', 
+            'bfbbed70-309f-442c-8112-b66a35d7a39a', 
+            '$2b$10$7IEZwdCcck2lRliuu2cQle2YAjqMSYZokSizaM4pfzlZULvtqYPGG', 
+            '{"user"}',  -- ← CORREGIDO: usar {"user"} en lugar de {user}
+            true, 
+            '2025-04-05 15:39:29.626000', 
+            '2025-04-05 15:39:29.626000', 
+            null
+        );
+    END IF;
+END $$;
 
 INSERT INTO public.user_actions (id, "createdDate", "updatedDate", "deletedDate", "userId", "actionId") VALUES ('6bccd56e-2123-4b95-b186-d4bdc416d868', '2025-04-05 15:39:29.971403', '2025-04-05 15:39:29.971403', null, 'bfbbed70-309f-442c-8112-b66a35d7a39a', '5ab50073-596c-4b77-a296-896ed408d574');
 INSERT INTO public.user_actions (id, "createdDate", "updatedDate", "deletedDate", "userId", "actionId") VALUES ('c62ae8a0-badc-404a-866f-25b7f117ff95', '2025-04-05 15:39:30.029768', '2025-04-05 15:39:30.029768', null, 'bfbbed70-309f-442c-8112-b66a35d7a39a', '69a476d8-66b9-45fa-aba9-76796b3ccff2');

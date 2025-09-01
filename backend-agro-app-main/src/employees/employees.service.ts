@@ -286,6 +286,7 @@ export class EmployeesService {
   async findTopEmployeesInHarvests({
     year = new Date().getFullYear(),
   }: QueryForYearDto) {
+    this.logger.log('Entra a FindTopEmployeesInHarvests')
     const employees = await this.employeeRepository.query(
       `
       SELECT hd."employeeId" as id,

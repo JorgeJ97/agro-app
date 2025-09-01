@@ -14,6 +14,3 @@ BEGIN
   END CASE;
 END;
 $$;
-
-alter function convert_to_grams(text, numeric) owner to "admin-agro";
-

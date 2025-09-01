@@ -1,6 +1,3 @@
--- create database agro with owner postgres;
- \c agro;
-
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
