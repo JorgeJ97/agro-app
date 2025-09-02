@@ -214,8 +214,15 @@ export class AuthService {
         paths: pathsDashboardController,
       },
     };
-
-    // await this.modulesRepository.delete({});
+        await this.moduleActionsRepository
+      .createQueryBuilder()
+      .delete()
+      .execute();
+    
+    await this.modulesRepository
+      .createQueryBuilder()
+      .delete()
+      .execute();
 
     for (const nameModule of Object.keys(modules)) {
       const modelEntity = this.modulesRepository.create({
