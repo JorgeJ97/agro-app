@@ -499,6 +499,7 @@ export class SeedService {
           employee: { id: employee.id },
           amount: amount,
           value_pay: valuePay,
+          unit_of_measure: 'KILOGRAMOS'
         } as HarvestDetailsDto;
       }),
       amount: amount * quantityEmployees,
