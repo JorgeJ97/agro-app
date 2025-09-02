@@ -1,4 +1,9 @@
-Aplicación desarrollada en NestJS para la gestión integral de actividades agrícolas. Permite administrar cultivos, empleados, ventas, compras, cosechas, trabajos, insumos y generar reportes para la toma de decisiones en empresas agrícolas.
+Agro es una aplicación desarrollada en NestJS para la gestión integral de actividades agrícolas. Permite administrar cultivos, empleados, ventas, compras, cosechas, trabajos, insumos y generar reportes para la toma de decisiones en empresas agrícolas.
+
+Puedes ver la aplicacion ingresando aqui: https://front-agro.onrender.com/
+Credenciales de prueba: 
+  - Email: demouser@example.com
+  - Password: 123456
 
 ## 🚀 Características principales
 
