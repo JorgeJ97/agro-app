@@ -4,6 +4,7 @@ Puedes ver la aplicacion ingresando aqui: https://front-agro.onrender.com/
 Credenciales de prueba: 
   - Email: demouser@example.com
   - Password: 123456
+> ⚠ **Nota:** La aplicación puede tardar unos segundos en abrir si no se ha utilizado recientemente, ya que Render desactiva la instancia cuando no está en uso.
 
 ## 🚀 Características principales
 
